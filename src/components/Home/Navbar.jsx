@@ -31,9 +31,9 @@ const Navbar = () => {
         <details>
           <summary><NavLink to={'/event'}>Event</NavLink></summary>
           <ul className="p-2">
-            <li><Link to={'/event'}>Past</Link></li>
-            <li><Link to={'/event'}>Current</Link></li>
-            <li><Link to={'/event'}>Future</Link></li>
+            <li><Link to={'/pastEvent'}>Past</Link></li>
+            <li><Link to={'/currentEvent'}>Current</Link></li>
+            <li><Link to={'/futureEvent'}>Future</Link></li>
           </ul>
         </details>
       </li>

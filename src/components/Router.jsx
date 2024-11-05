@@ -12,6 +12,10 @@ import Event from './Event/Event';
 import AddEvent from './AddEvent/AddEvent';
 import PrivateRoute from './PrivateRoute';
 import About from './About';
+import PastEvent from './Event/PastEvent';
+import CurrentEvent from './Event/CurrentEvent';
+import FutureEvent from './Event/FutureEvent';
+import UpdateEvent from './AddEvent/UpdateEvent';
 
   export const router = createBrowserRouter([
     {
@@ -34,6 +38,23 @@ import About from './About';
         {
           path:'/event',
           element:<Event></Event>
+        },
+        {
+          path:'/updateEvent/:id',
+          element:<PrivateRoute><UpdateEvent></UpdateEvent></PrivateRoute>,
+          loader:({params})=>fetch(`http://localhost:3000/posts/${params.id}`)
+        },
+        {
+          path:'/pastEvent',
+          element:<PastEvent></PastEvent>
+        },
+        {
+          path:'/currentEvent',
+          element:<CurrentEvent></CurrentEvent>
+        },
+        {
+          path:'/futureEvent',
+          element:<FutureEvent></FutureEvent>
         },
         {
           path:'/about',
