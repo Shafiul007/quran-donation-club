@@ -29,7 +29,7 @@ const Login = () => {
             const user = userCredential.user;
             const loggedUser={email:user.email}
             // console.log(loggedUser);
-            // axios.post('http://localhost:3000/jwt',loggedUser,{withCredentials:true})
+            // axios.post('https://quran-donation-club-server.vercel.app/jwt',loggedUser,{withCredentials:true})
             // .then(res=>{
             //   if(res.data.success){
             //     location?.state? navigate(location.state) : navigate('/');

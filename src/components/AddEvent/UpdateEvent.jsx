@@ -15,8 +15,9 @@ const UpdateEvent = () => {
         const title=form.title.value;
         const text=form.text.value;
         const photo=form.photo.value;
+        const video=form.video.value;
         const time=form.time.value;
-        const updateInfo={title,text,photo,time};
+        const updateInfo={title,text,photo,time,video};
         console.log(updateInfo);
         axiosPublic.put(`/posts/${_id}`,updateInfo)
         .then(data=>{
@@ -61,7 +62,14 @@ const UpdateEvent = () => {
                   <label className="label">
                     <span className="label-text">Photo</span>
                   </label>
-                  <input type="text" name='photo' placeholder={photo} defaultValue={photo} className="input input-bordered" required/>
+                  <input type="text" name='photo' placeholder={photo} defaultValue={photo} className="input input-bordered" />
+                  
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Video</span>
+                  </label>
+                  <input type="text" name='video' placeholder="video url" className="input input-bordered" />
                   
                 </div>
                 <div className="form-control">

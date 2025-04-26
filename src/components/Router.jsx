@@ -42,7 +42,7 @@ import UpdateEvent from './AddEvent/UpdateEvent';
         {
           path:'/updateEvent/:id',
           element:<PrivateRoute><UpdateEvent></UpdateEvent></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:3000/posts/${params.id}`)
+          loader:({params})=>fetch(`https://quran-donation-club-server.vercel.app/posts/${params.id}`)
         },
         {
           path:'/pastEvent',
