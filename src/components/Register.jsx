@@ -6,40 +6,55 @@ import GoogleLogin from './Social/GoogleLogin';
 const Register = () => {
   const navigate=useNavigate();
   const location=useLocation();
- 
+  const image_hosting_key=import.meta.env.VITE_IMAGE_HOSTING_KEY;
   const {createEmail,updateUserProfile}=useContext(AuthContext);
 
   const handleRegister=(e)=>{
       e.preventDefault();
-      const form=e.target;
-      const email=form.email.value;
-      const password=form.password.value;
-      const displayName=form.displayName.value;
-      const PhotoURL=form.photo.value;
+      const form=new FormData(e.target);
+      const email=form.get('email');
+      const password=form.get('password');
+      const displayName=form.get('displayName');
+      const photo=form.get('photo');
       console.log(email, password, displayName);
-      // const user={email, password};
-      // console.log(user);
-      createEmail(email,password)
-      .then((userCredential) => {
-        console.log(userCredential);
-          // Signed up 
-          const user = userCredential.user;
-          updateUserProfile(displayName,PhotoURL)
-          .then(()=>{
-              console.log('updateUser');
+      const data=new FormData();
+      data.append('image',photo);
+      console.log(data);
+      fetch(`https://api.imgbb.com/1/upload?key=${image_hosting_key}`,{
+        method:"POST",
+        body:data,
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data.data.url);
+        const photoURL=data.data.url;
+        createEmail(email,password)
+        .then((userCredential) => {
+          console.log(userCredential);
+            // Signed up 
+            const user = userCredential.user;
+            updateUserProfile(displayName,photoURL)
+            .then(()=>{
+                console.log('updateUser');
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+            location?.state ? navigate(location.state):navigate('/');
+            navigate('/');
+            // ...
           })
-          .catch((err)=>{
-              console.log(err);
-          })
-          location?.state ? navigate(location.state):navigate('/');
-          navigate('/');
-          // ...
-        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           // ..
         });
+     
+      })
+      
+      // const user={email, password};
+      // console.log(user);
+      
   }
     return (
         <div>
@@ -53,10 +68,10 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">PhotoURL</span>
+                  <span className="label-text">Photo</span>
                 </label>
                 {/* https://i.postimg.cc/x1MVWB5H/1677208181662.jpg */}
-                <input type="text" name='photo' placeholder="Photo Url" className="input input-bordered" required />
+                <input type="file" name='photo' className="input input-bordered" required />
               </div>
               <div className="form-control">
                 <label className="label">

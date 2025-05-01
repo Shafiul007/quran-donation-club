@@ -8,7 +8,7 @@ const Navbar = () => {
 
 
   const {user,loginOut}=useContext(AuthContext);
-        
+  // console.log(user.photoURL,user.displayName);
       
   const handleLogout=()=>{
     Swal.fire({
@@ -78,8 +78,8 @@ const Navbar = () => {
     {
       user?
       <>
+      <Link to={'/userInfo'}><img className='w-12 h-12 rounded-full' src={user?.photoURL}></img></Link>
       
-      <p>{user?.displayName}</p>
       <button className='btn ml-1' onClick={handleLogout}>Logout</button>
       </>
       :

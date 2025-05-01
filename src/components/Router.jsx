@@ -16,6 +16,7 @@ import PastEvent from './Event/PastEvent';
 import CurrentEvent from './Event/CurrentEvent';
 import FutureEvent from './Event/FutureEvent';
 import UpdateEvent from './AddEvent/UpdateEvent';
+import UserInfo from './Home/UserInfo';
 
   export const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ import UpdateEvent from './AddEvent/UpdateEvent';
         {
             path:'/',
             element:<Home></Home>
+        },
+        {
+            path:'/userInfo',
+            element:<UserInfo></UserInfo>
         },
         {
             path:'/login',
