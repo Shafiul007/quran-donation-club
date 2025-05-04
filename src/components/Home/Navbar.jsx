@@ -38,7 +38,7 @@ const Navbar = () => {
         </details>
       </li>
         <li><NavLink to={'/about'}>About Us</NavLink></li>
-        <li><NavLink to={'/addEvent'}>Add Event</NavLink></li>
+        {user && <li><NavLink to={'/addEvent'}>Add Event</NavLink></li>}
 
     </>
     return (
